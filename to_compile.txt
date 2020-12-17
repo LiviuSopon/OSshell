@@ -1,0 +1,2 @@
+g++ shell.cpp -L/usr/local/lib -I/usr/local/include -lreadline
+
