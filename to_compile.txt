@@ -1,2 +1,8 @@
-g++ shell.cpp -L/usr/local/lib -I/usr/local/include -lreadline
+Compilator call: g++ shell.cpp -L/usr/local/lib -I/usr/local/include -lreadline -lexplain
 
+
+
+The following libraries are needed:
+
+GNU Readline: sudo apt-get install libreadline-dev
+libexplain: sudo apt-get install libexplain-dev
