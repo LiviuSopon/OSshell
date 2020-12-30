@@ -67,8 +67,7 @@ int main (int argc, char **argv)
         final_vect.push_back(helper);
     }
 
-    int hp = 0;
-    for (int j = rows * hp; j < rows * (hp+1); j++) {
+    for (int j = 0; j < rows; j++) {
         for (int i = 0; i < columns; i++) {
             printf("%-*s", max_size, final_vect[i][j].c_str());
         }
