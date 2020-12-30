@@ -41,7 +41,7 @@ void sigintHandler(int sig_num) {
 void ex(const char* command, char *const  arguments[]) {
     int pid = fork();
     if (pid < 0) {
-        cout<<"Yo, dawg, there's been an error.";
+        printf("Yo, dawg, there's been an error.");
         exit(-1);
     }
     else if (pid == 0) {

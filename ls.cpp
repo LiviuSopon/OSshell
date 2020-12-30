@@ -69,9 +69,10 @@ int Details(char *path)
     printf( (fileStat.st_mode & S_IWOTH) ? "w" : "-");
     printf( (fileStat.st_mode & S_IXOTH) ? "x" : "-");
 
-    std::cout<<" "<<fileStat.st_nlink<<" ";
+    int links = fileStat.st_nlink;
+    printf(" %d ", n);
 
-    std::cout<<length;
+    printf("%d",length);
 
     close(file); //fclose(f);
     free(buffer);
@@ -85,7 +86,7 @@ int Details(char *path)
 void classify(struct stat st) {
 
     if(S_ISREG(st.st_mode) && st.st_mode & 0111) {
-        std::cout<<"*";
+        printf("*");
         return;
     }
 
@@ -94,27 +95,27 @@ void classify(struct stat st) {
     }
 
     if(S_ISDIR(st.st_mode)) {
-        std::cout<<"/";
+        printf("/");
         return;
     }
 
     if(S_ISLNK(st.st_mode)) {
-        std::cout<<"@";
+        printf("@");
         return;
     }
 
     if(S_ISFIFO(st.st_mode)) {
-        std::cout<<"|";
+        printf("|");
         return;
     }
     
     if(S_ISCHR(st.st_mode)) {
-        std::cout<<"CHR";
+        printf("CHR");
         return;
     }
 
     if(S_ISBLK(st.st_mode)) {
-        std::cout<<"BLK";
+        printf("BLK");
         return;
     }
     
@@ -139,20 +140,14 @@ int main(int argc, char *argv[]) {
                 vect.push_back(std::string(name));
         }
 
-        sort(vect.begin(), vect.end(), );
-
-        for (int i = 0; i < vect.size(); i++){
-            std::cout<<vect[i]<<std::endl;
-        }
-
-        exit(0);
+        sort(vect.begin(), vect.end());
 
         for (int i = 0; i < vect.size(); i++) {
             char* name = (char*)vect[i].c_str();
 
                 stat(name, &st);
                 int size = st.st_blocks/2; // to better look like the result of ls -s
-                std::cout<<size<<" ";
+                printf("%d ", size);
 
                 char path[PATH_MAX];
                 snprintf(path, sizeof(path), "%s/%s", cwd, name);
@@ -169,7 +164,7 @@ int main(int argc, char *argv[]) {
 
                 classify(st); // for ls -F
 
-                std::cout<<std::endl;
+                printf("\n");
             //}
         }
         closedir(point);
