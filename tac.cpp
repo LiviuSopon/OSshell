@@ -62,8 +62,9 @@ std::vector<std::string> input_tac(std::string sep) {
 }
 
 void print_vector(std::vector<std::string> vec, bool bef, std::string sp) {
-    std::reverse(vec.begin(), vec.end());
-    for(auto i : vec) {
+    std::vector<std::string> vct = vec;
+    std::reverse(vct.begin(), vct.end());
+    for(auto i : vct) {
         if(bef) printf("%s", sp.c_str());
         printf("%s", (char*)i.c_str());
         if(!bef) printf("%s", sp.c_str());
@@ -104,12 +105,13 @@ int main(int argc, char* argv[]) {
         for (int i = optind; i < argc; i++)
             try {
                 vect = file_tac(argv[i], separator);
+                print_vector(vect, before, separator);
             }
             catch(std::string ex) {
                 printf("%s", ex.c_str());
             }
-            print_vector(vect, before, separator);
     }
 
+    return 0;
 
 }
